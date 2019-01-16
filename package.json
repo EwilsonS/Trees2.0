@@ -1,0 +1,30 @@
+{
+  "name": "trees",
+  "version": "1.0.0",
+  "description": "non react passport challenge",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\""
+  },
+  "author": "Evan Wilson",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.18.7"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.4",
+    "if-env": "^1.0.4",
+    "mongodb": "*",
+    "mongoose": "^5.3.15",
+    "morgan": "^1.9.0",
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0"
+  }
+}

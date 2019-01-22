@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:3001/",
+  "license": "ISC",
   "dependencies": {
     "axios": "^0.16.2",
     "bootstrap": "^4.2.1",

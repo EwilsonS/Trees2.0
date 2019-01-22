@@ -13,7 +13,7 @@ class Factory extends Component {
 		name: "",
 		newName: ""
 	};
-	
+
 	// Sets state for targeted input
 	handleInputChange = event => {
 		const { name, value } = event.target;
@@ -21,7 +21,7 @@ class Factory extends Component {
 			[name]: value
 		});
 	};
-	
+
 	// Delete a factory
 	deleteFactory = (name, arr) => {
 		// Clear and set localStorage to represent the target item
@@ -30,15 +30,17 @@ class Factory extends Component {
 
 		// Build the object to attach to req.body
 		let data =
-				{
-					[name]: arr
-				};
+		{
+			[name]: arr
+		};
 		this.props.removeFactory(data)
 		this.setState({ nameClicked: false })
 	};
 
 	//Helper function to create text field on click
-	clicked = () => {
+	clicked = (name) => {
+		localStorage.removeItem("currFactory")
+		localStorage.setItem("currFactory", name);
 		this.setState({ nameClicked: true })
 	}
 
@@ -67,11 +69,10 @@ class Factory extends Component {
 				{
 					[name]: arr
 				},
-				[
-					{
-						[this.state.newName]: arr
-					}
-				]
+				{
+					[this.state.newName]: arr
+				}
+
 			]
 
 		this.handleSocket()
@@ -81,13 +82,8 @@ class Factory extends Component {
 			this.setState({ nameClicked: false })
 			return
 		} else {
-			API.changeName(localStorage.getItem("treeID").toString(), data)
-				.then(() => {
-					this.setState({ nameClicked: false })
-				}).then(() => {
-
-					this.props.listen('rename factory')
-				})
+			this.props.changeFactoryName(data)
+			this.setState({ nameClicked: false })
 		}
 	}
 
@@ -109,7 +105,7 @@ class Factory extends Component {
 						:
 						<span
 							className="factory-text h5"
-							onClick={this.clicked}
+							onClick={() => { this.clicked(pair.name) }}
 						>
 							{this.state.newName ? this.state.newName : pair.name}
 						</span>

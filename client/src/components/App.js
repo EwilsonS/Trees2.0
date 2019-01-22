@@ -39,7 +39,7 @@ class App extends Component {
             console.log(Object.keys(item[0].factory[0])[0]) // wilson
             console.log(Object.values(item[0].factory[0])) // [12, 12, 23, 855]
            */
-
+          console.log(res.data)
           let item = res.data.root
           let makeMatch = [];
 
@@ -95,10 +95,22 @@ class App extends Component {
     this.listen('delete factory')
   }
 
+  changeFactoryName = (data) => {
+
+    API.changeName(localStorage.getItem("treeID"), data)
+    .then(() => {
+      this.setState({ nameClicked: false })
+    }).then(() => {
+      this.listen('rename factory')
+    })
+    
+  }
+
   listen = (str) => {
     this.componentDidMount()
     console.log(`****** Clicked: ${str} ******`)
   }
+
 
   render() {
     // this.getData()
@@ -112,12 +124,13 @@ class App extends Component {
               listen={this.listen}
               addFactory={this.addFactory}
               removeFactory={this.removeFactory}
+              changeFactoryName ={this.changeFactoryName}
             />
           </div>
         </div>
         <div className="text-date ml-5 mt-5">
           <span> Built by Evan Wilson</span><br />
-          <span>Version 2.0</span><br />
+          <span> Version 2.0</span><br />
           <a className="text-dark" href="https://github.com/EwilsonS/SayTrees">Github repo</a>
         </div>
       </div>

@@ -49,7 +49,8 @@ class Root extends Component {
     if (!validate.test(fact)){
 			alert("invalid input")
 		} else {
-      let data = [
+      let data =
+       [
         {
           [this.state.factory]: this.changeNodesToNumbers()
         }
@@ -176,7 +177,7 @@ class Root extends Component {
           matchArr={this.props.matchArr}
           listen={this.props.listen}
           removeFactory={this.props.removeFactory}
-
+          changeFactoryName ={this.props.changeFactoryName}
         />
       </div>
     )

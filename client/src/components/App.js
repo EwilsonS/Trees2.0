@@ -39,7 +39,6 @@ class App extends Component {
             console.log(Object.keys(item[0].factory[0])[0]) // wilson
             console.log(Object.values(item[0].factory[0])) // [12, 12, 23, 855]
            */
-          console.log(res.data)
           let item = res.data.root
           let makeMatch = [];
 

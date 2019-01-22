@@ -115,7 +115,7 @@ class Factory extends Component {
 						onClick={() => { this.rename(pair.name, pair.nodes) }}
 					></i>
 					<i
-						className="fas fa-ban text-danger ban m-1"
+						className="fas fa-times text-danger ban m-1"
 						onClick={() => { this.deleteFactory(pair.name, pair.nodes) }}
 					></i>
 				</div>

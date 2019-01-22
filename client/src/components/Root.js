@@ -41,6 +41,11 @@ class Root extends Component {
   }
 
   create = (e) =>{
+    /*
+        this function collects user input, arranges it into the data variable
+        and sends to parent component through props.addFactory(). 
+    */
+
     e.preventDefault()
 
     let validate = new RegExp(/[a-z0-9]+$/i);

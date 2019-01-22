@@ -73,7 +73,7 @@ module.exports = {
 		console.log(req.body)
 		db.Tree
 			.update(
-				{ 'root': [req.body[0]] }, { $set: { "root": req.body[1] } }, { new: true })
+				{ "root": [req.body[0]] }, { $set: { "root": req.body[1] } }, { new: true })
 			.then(dbModel => {
 				res.json(dbModel)
 				console.log(`=============================`)

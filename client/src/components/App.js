@@ -76,19 +76,23 @@ class App extends Component {
       API.saveTree({ root: data })
         .then((res) => {
           localStorage.setItem("treeID", res.data._id)
-          // console.log(res)
         })
-
     } else {
       /*
         If db is not empty, use id in localStorage to add a factory
       */
       API.addFactory(localStorage.getItem('treeID'), data)
         .then(res => {
-          console.log(res)
-          this.listen('add factory')
         })
-    }
+      }
+      this.listen('create factory')
+  }
+
+  removeFactory = (data) =>{
+    API.pullFactory(localStorage.getItem("treeID"), data)
+			.then(() => {
+			})
+    this.listen('delete factory')
   }
 
   listen = (str) => {
@@ -104,9 +108,10 @@ class App extends Component {
         <div className='row'>
           <div className='col-md-6 offset-md-3'>
             <Root
-              addFactory={this.addFactory}
               matchArr={this.state.match}
               listen={this.listen}
+              addFactory={this.addFactory}
+              removeFactory={this.removeFactory}
             />
           </div>
         </div>

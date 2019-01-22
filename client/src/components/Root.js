@@ -35,6 +35,8 @@ class Root extends Component {
   }
   
   expandCollapse = () =>{
+
+    // Toggle add factory form
     this.setState({expand: (this.state.expand === false) ? true : false})
   }
 
@@ -54,6 +56,13 @@ class Root extends Component {
       ]
       this.props.addFactory(data)
       this.expandCollapse()
+      this.setState({
+        name: "",
+        factory: "",
+        nodes: 0,
+        rangeMin: 0,
+        rangeMax: 0
+      })
     }
   }
 
@@ -166,6 +175,7 @@ class Root extends Component {
         <Factory
           matchArr={this.props.matchArr}
           listen={this.props.listen}
+          removeFactory={this.props.removeFactory}
 
         />
       </div>

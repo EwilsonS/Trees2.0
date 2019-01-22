@@ -13,7 +13,15 @@ class Factory extends Component {
 		name: "",
 		newName: ""
 	};
-
+	
+	// Sets state for targeted input
+	handleInputChange = event => {
+		const { name, value } = event.target;
+		this.setState({
+			[name]: value
+		});
+	};
+	
 	// Delete a factory
 	deleteFactory = (name, arr) => {
 		// Clear and set localStorage to represent the target item
@@ -22,51 +30,29 @@ class Factory extends Component {
 
 		// Build the object to attach to req.body
 		let data =
-		{
-			factory: [
 				{
 					[name]: arr
-				}
-			]
-		}
-		// removes the factory from 'root' array then collapse input field
-		API.pullFactory(localStorage.getItem("treeID"), data)
-			.then(() => {
-				this.setState({ nameClicked: false })
-				this.props.listen('delete factory')
-			})
+				};
+		this.props.removeFactory(data)
+		this.setState({ nameClicked: false })
 	};
-
-	// Sets state for targeted input
-	handleInputChange = event => {
-		const { name, value } = event.target;
-		this.setState({
-			[name]: value
-		});
-	};
-
 
 	//Helper function to create text field on click
 	clicked = () => {
 		this.setState({ nameClicked: true })
 	}
 
-	//Helper function to remove text field on away click
-	unClicked = () => {
-		this.setState({ nameClicked: false })
-	}
-
-	componentDidMount(){
+	componentDidMount() {
 		this.handleSocket()
 	}
 
 	// use socket to display name change live
-	handleSocket = () =>{
+	handleSocket = () => {
 		const socket = io();
 		socket.emit('factory', this.state.newName);
 
-		socket.on('factory', (name)=>{
-			this.setState({newName: name})
+		socket.on('factory', (name) => {
+			this.setState({ newName: name })
 		})
 
 	}
@@ -88,8 +74,8 @@ class Factory extends Component {
 				]
 			]
 
-			this.handleSocket()
-		
+		this.handleSocket()
+
 		// if stmnt to prevent empty string sumissions and close text field after pressing arrow
 		if (this.state.newName === "") {
 			this.setState({ nameClicked: false })
@@ -98,8 +84,8 @@ class Factory extends Component {
 			API.changeName(localStorage.getItem("treeID").toString(), data)
 				.then(() => {
 					this.setState({ nameClicked: false })
-				}).then(()=>{
-					
+				}).then(() => {
+
 					this.props.listen('rename factory')
 				})
 		}
@@ -108,10 +94,10 @@ class Factory extends Component {
 	render() {
 
 		return this.props.matchArr.map((pair) => (
-			<div 
-			className="ml-3">
-				<div 
-			className="form-inline">
+			<div
+				className="ml-3">
+				<div
+					className="form-inline">
 					{(this.state.nameClicked === true) ?
 						<input
 							className="form-control form-control-sm alt-input"
@@ -125,12 +111,12 @@ class Factory extends Component {
 							className="factory-text h5"
 							onClick={this.clicked}
 						>
-							{this.state.newName ?  this.state.newName  : pair.name}
+							{this.state.newName ? this.state.newName : pair.name}
 						</span>
 					}
 					<i
 						className="fas fa-arrow-right text-info edit-arrow m-1"
-						onClick={() => {this.rename(pair.name, pair.nodes)}}
+						onClick={() => { this.rename(pair.name, pair.nodes) }}
 					></i>
 					<i
 						className="fas fa-ban text-danger ban m-1"

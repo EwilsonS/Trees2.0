@@ -1,9 +1,38 @@
 .tree-section{
-    height: 25rem;
+    height: 35rem;
     background-color: rgba(255, 255, 255, 0.74);
     border: none;
     overflow: auto;
     -webkit-box-shadow: 5px 5px 12px 0px rgba(80, 80, 80, 0.27);
     -moz-box-shadow:    5px 5px 12px 0px rgba(80, 80, 80, 0.27);
     box-shadow:         5px 5px 12px 0px rgba(80, 80, 80, 0.27);
+}
+#range-min, #range-max{
+    width: 4rem
+}
+.form-text{
+    font-size: .9rem;
+    color: rgb(109, 109, 109)
+}
+.create-input{
+    height: 1.5rem;
+    border: none;
+    background-color: rgb(255, 255, 255);
+    color: black;
+    border-radius: 0;
+}
+.create-input:focus{
+    outline: none !important;
+    border:none;
+    box-shadow: 0 0 4px rgba(102, 102, 102, 0.404);
+}
+
+.go{
+    background-color: #dda488;
+    color: white
+}
+.go:focus{
+    outline: none !important;
+    border:none;
+    box-shadow: 0 0 4px rgba(102, 102, 102, 0.404);
 }

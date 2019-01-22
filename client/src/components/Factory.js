@@ -129,7 +129,7 @@ class Factory extends Component {
 						</span>
 					}
 					<i
-						className="fas fa-arrow-circle-right text-info edit-arrow m-1"
+						className="fas fa-arrow-right text-info edit-arrow m-1"
 						onClick={() => {this.rename(pair.name, pair.nodes)}}
 					></i>
 					<i

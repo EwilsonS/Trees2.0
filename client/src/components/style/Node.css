@@ -9,3 +9,8 @@
     color: black;
     border-radius: 0;
 }
+.range-input:focus{
+    outline: none !important;
+    border:none;
+    box-shadow: 0 0 4px rgba(102, 102, 102, 0.404);
+}

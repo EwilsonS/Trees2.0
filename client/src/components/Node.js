@@ -70,7 +70,7 @@ class Node extends Component {
 
 	render() {
 		return (
-			<div className="row">
+			<div className="row mt-1">
 				<div className="col-sm-4">
 					{this.props.nodesArr.map((node) => (
 						<p key={uniqueString()} className="ml-4 my-0 node-text">{node}</p>
@@ -80,9 +80,9 @@ class Node extends Component {
 					<div className="form-inline ml-4">
 						<span>
 							<small>Change Range</small><br />
-							<small>Min:</small>
+							<small>Min: </small>
 							<input
-								className="form-control form-control-sm range-input mx-sm-1"
+								className="form-control form-control-sm range-input"
 								name="rangeMin"
 								id="range-min"
 								type="number"
@@ -91,9 +91,9 @@ class Node extends Component {
 								value={(this.state.rangeMin === undefined) ? this.props.range[0] : this.state.rangeMin}
 								onChange={this.handleInputChange}
 							/> <br />
-							<small>Max:</small>
+							<small>Max: </small>
 							<input
-								className="form-control form-control-sm range-input mx-sm-1"
+								className="form-control form-control-sm range-input"
 								name="rangeMax"
 								id="range-max"
 								type="number"
@@ -104,7 +104,7 @@ class Node extends Component {
 							/>
 							<i
 								onClick={this.updateRange}
-								className="fas fa-sync text-success"></i>
+								className="fas fa-sync text-success ml-1"></i>
 							<div>
 							</div>
 

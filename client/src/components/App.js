@@ -119,7 +119,7 @@ class App extends Component {
 
 
   render() {
-    // this.getData()
+    this.componentDidMount()
 
     return (
       <div className='container-fluid'>

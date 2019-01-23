@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './style/Factory.css'
 import Node from './Node'
-import API from '../utils/API';
 import io from 'socket.io-client'
 // import uniqueString from 'unique-string'
 
@@ -64,17 +63,17 @@ class Factory extends Component {
 	}
 
 	// Renames the selected factory while keeping the array in tact.
-	rename = (name, arr) => {
+	rename = (name, arr1, arr2) => {
 		localStorage.removeItem("currFactory")
 		localStorage.setItem("currFactory", name);
 
 		let data =
 			[
 				{
-					[name]: arr
+					[name]: [arr1, arr2]
 				},
 				{
-					[this.state.newName]: arr
+					[this.state.newName]: [arr1, arr2]
 				}
 
 			]
@@ -116,7 +115,7 @@ class Factory extends Component {
 					}
 					<i
 						className="fas fa-arrow-right text-info edit-arrow m-1"
-						onClick={() => { this.rename(pair.name, pair.nodes) }}
+						onClick={() => { this.rename(pair.name, pair.nodes, pair.range) }}
 					></i>
 					<i
 						className="fas fa-times text-danger ban m-1"
@@ -124,7 +123,10 @@ class Factory extends Component {
 					></i>
 				</div>
 				<Node
+					name={pair.name}
 					nodesArr={pair.nodes}
+					range={pair.range}
+          changeFactoryRange= {this.props.changeFactoryRange}
 				/>
 			</div>
 		));

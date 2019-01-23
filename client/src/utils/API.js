@@ -28,5 +28,9 @@ export default {
     // Change Name
     changeName: function (id, data) {
         return axios.put("/api/trees/changeName/" + id, data)
+    },
+    // Change Range
+    changeRange: function (id, data) {
+        return axios.put("/api/trees/changeRange/" + id, data)
     }
 };

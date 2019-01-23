@@ -16,7 +16,7 @@
 }
 .create-input{
     height: 1.5rem;
-    border: none;
+    border: 1px solid rgba(238, 238, 238, 0.582);
     background-color: rgb(255, 255, 255);
     color: black;
     border-radius: 0;

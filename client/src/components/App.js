@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Root from './Root';
 import './style/App.css';
-import UpdatePane from './UpdatePane';
 import API from '../utils/API';
 // import uniqueString from 'unique-string'
 // import io from 'socket.io-client'
@@ -11,7 +10,8 @@ class App extends Component {
     match: [
       {
         name: "",
-        nodes: []
+        nodes: [],
+        range:[]
       }
     ],
   };
@@ -39,6 +39,7 @@ class App extends Component {
             console.log(Object.keys(item[0].factory[0])[0]) // wilson
             console.log(Object.values(item[0].factory[0])) // [12, 12, 23, 855]
            */
+          console.log(res.data.root)
           let item = res.data.root
           let makeMatch = [];
 
@@ -53,7 +54,8 @@ class App extends Component {
 
               let m = {}
               m.name = Object.keys(item[i])[0];
-              m.nodes = Object.values(item[i])[k];
+              m.nodes = Object.values(item[i])[k][0];
+              m.range = Object.values(item[i])[k][1];
 
               makeMatch.push(m)
             }
@@ -61,9 +63,10 @@ class App extends Component {
           this.setState({
             match: makeMatch
           })
+          console.log(makeMatch)
         }
       })
-  }
+  };
 
   addFactory = (data) => {
     if (!localStorage.getItem('treeID')) {
@@ -85,30 +88,34 @@ class App extends Component {
         })
       }
       this.listen('create factory')
-  }
+  };
 
   removeFactory = (data) =>{
     API.pullFactory(localStorage.getItem("treeID"), data)
 			.then(() => {
 			})
     this.listen('delete factory')
-  }
+  };
 
   changeFactoryName = (data) => {
-
     API.changeName(localStorage.getItem("treeID"), data)
     .then(() => {
-      this.setState({ nameClicked: false })
-    }).then(() => {
       this.listen('rename factory')
     })
-    
-  }
+  };
+
+  changeFactoryRange = (data)=>{
+    API.changeRange(localStorage.getItem("treeID"), data)
+    .then(() => {
+      this.listen('range change')
+      this.forceUpdate()
+    })
+  };
 
   listen = (str) => {
     this.componentDidMount()
     console.log(`****** Clicked: ${str} ******`)
-  }
+  };
 
 
   render() {
@@ -120,10 +127,10 @@ class App extends Component {
           <div className='col-md-6 offset-md-3'>
             <Root
               matchArr={this.state.match}
-              listen={this.listen}
               addFactory={this.addFactory}
               removeFactory={this.removeFactory}
               changeFactoryName ={this.changeFactoryName}
+              changeFactoryRange= {this.changeFactoryRange}
             />
           </div>
         </div>

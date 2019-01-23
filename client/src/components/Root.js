@@ -57,7 +57,7 @@ class Root extends Component {
       let data =
        [
         {
-          [this.state.factory]: this.changeNodesToNumbers()
+          [this.state.factory]: [this.changeNodesToNumbers(),  [parseInt(this.state.rangeMin), parseInt(this.state.rangeMax)]],
         }
       ]
       this.props.addFactory(data)
@@ -180,9 +180,9 @@ class Root extends Component {
 
         <Factory
           matchArr={this.props.matchArr}
-          listen={this.props.listen}
           removeFactory={this.props.removeFactory}
           changeFactoryName ={this.props.changeFactoryName}
+          changeFactoryRange= {this.props.changeFactoryRange}
         />
       </div>
     )

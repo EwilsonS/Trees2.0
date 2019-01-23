@@ -10,8 +10,8 @@ router
 router
   .route("/:name")
   .get(treesController.findOne)
-  
-  router
+
+router
   .route("/:id")
   .get(treesController.findById)
 
@@ -22,8 +22,13 @@ router
 router
   .route("/pullFactory/:id")
   .put(treesController.pullFactory)
+
   router
   .route("/changeName/:id")
   .put(treesController.changeName)
+
+  router
+  .route("/changeRange/:id")
+  .put(treesController.changeRange)
 
 module.exports = router;

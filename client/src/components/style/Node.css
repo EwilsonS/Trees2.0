@@ -2,3 +2,10 @@
     color: #d19a7e;
     font-size: .85rem;
 }
+.range-input{
+    height: 1.5rem;
+    border: 1px solid rgba(238, 238, 238, 0.596);
+    background-color: rgb(255, 255, 255);
+    color: black;
+    border-radius: 0;
+}

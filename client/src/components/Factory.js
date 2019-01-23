@@ -54,7 +54,11 @@ class Factory extends Component {
 		socket.emit('factory', this.state.newName);
 
 		socket.on('factory', (name) => {
-			this.setState({ newName: name })
+			this.setState({
+				newName: name,
+				newName: ""
+
+			})
 		})
 
 	}

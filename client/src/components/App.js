@@ -137,7 +137,7 @@ class App extends Component {
         <div className="text-date ml-5 mt-5">
           <span> Built by Evan Wilson</span><br />
           <span> Version 2.0</span><br />
-          <a className="text-dark" href="https://github.com/EwilsonS/SayTrees">Github repo</a>
+          <a className="text-dark" href="https://github.com/EwilsonS/Trees2.0" target="_blank">Github repo</a>
         </div>
       </div>
     );

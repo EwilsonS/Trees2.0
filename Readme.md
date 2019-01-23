@@ -1,4 +1,4 @@
-## [Say Treees!](https://shielded-gorge-81034.herokuapp.com/)
+## [Say Treees V2.0!](https://quiet-falls-90707.herokuapp.com/)
 By Evan Wilson
 
 This app allows users to create and manipulate data in a tree structure
@@ -13,7 +13,7 @@ This app allows users to create and manipulate data in a tree structure
 
 ### Deployment
 
-Deployed to heroku (https://shielded-gorge-81034.herokuapp.com/)
+Deployed to heroku (https://quiet-falls-90707.herokuapp.com/)
 
 ### Development Schedule
 
@@ -36,8 +36,4 @@ Implement Socket.io for live updates
 
 ### Lessons Learned
 
-It's all about planning. If I were to start over, I would begin with socket io. Once, that is funcional, I would be sure to model my data in such a way that is easy to query. It's tough to find out hours later that $rename doesn't work with nested arrays in MongoDB. I'm sure I can work around those types of issues, but why do more work when we can let the technology to if for us.**This was a great brain excersise!**
-
-**Update**
-Socket working
-Node bypass secured
+This update includes some added functionality with renaming factories and updating nodes

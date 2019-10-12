@@ -2,7 +2,7 @@
   "name": "saytrees2",
   "version": "1.0.0",
   "engines": {
-    "node": "8.10.0"
+    "node": "*"
   },
   "description": "pp code challenge",
   "main": "server.js",
@@ -13,7 +13,8 @@
     "client": "cd client && npm run start",
     "install": "cd client && yarn install",
     "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "test": "mocha"
   },
   "author": "",
   "license": "ISC",
@@ -26,6 +27,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
+    "chai": "^4.2.0",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
     "css-loader": "1.0.0",
@@ -34,6 +36,7 @@
     "express-session": "^1.15.6",
     "express-validator": "^5.3.0",
     "if-env": "^1.0.4",
+    "mocha": "^6.2.1",
     "mongodb": "*",
     "mongoose": "^5.3.15",
     "morgan": "^1.9.0",

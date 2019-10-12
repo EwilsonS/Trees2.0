@@ -20,15 +20,16 @@ class Root extends Component {
     });
   };
 
-  changeNodesToNumbers = () => {
+  changeNodesToNumbers = (nodes, max, min) => {
 		/* 
 			Using array.splice(index, radix), I can push a randomly generated number at an index
 			provided by a for loop to an array. Iteration length, as well as the range of 
 			randmom numbers to generate, come from user input stored in state.
 		*/
-		let arr = [];
-		for (let i = 0; i < ((this.state.nodes <= 15) ? this.state.nodes : 15); i++) {
-			let randNum = Math.floor(Math.random() * ((parseInt(this.state.rangeMax, 10) - parseInt(this.state.rangeMin, 10)) + 1) + parseInt(this.state.rangeMin, 10));
+    let arr = [];
+    
+		for (let i = 0; i < ((nodes <= 15) ? nodes : 15); i++) {
+			let randNum = Math.floor(Math.random() * ((parseInt(max, 10) - parseInt(min, 10)) + 1) + parseInt(min, 10));
 			arr.splice(i, 0, randNum);
 		}
 		return arr
@@ -41,15 +42,16 @@ class Root extends Component {
   }
 
   create = (e) =>{
-    /*
+    e.preventDefault()
+    /* 
         this function collects user input, arranges it into the data variable
         and sends to parent component through props.addFactory(). 
     */
-
-    e.preventDefault()
-
     let validate = new RegExp(/[a-z0-9]+$/i);
     let fact = this.state.factory
+    let nodes = this.state.nodes;
+    let max = this.state.rangeMax;
+    let min = this.state.rangeMin;
 
     if (!validate.test(fact)){
 			alert("invalid input")
@@ -57,7 +59,7 @@ class Root extends Component {
       let data =
        [
         {
-          [this.state.factory]: [this.changeNodesToNumbers(),  [parseInt(this.state.rangeMin), parseInt(this.state.rangeMax)]],
+          [this.state.factory]: [this.changeNodesToNumbers(nodes, max, min),  [parseInt(this.state.rangeMin), parseInt(this.state.rangeMax)]],
         }
       ]
       this.props.addFactory(data)

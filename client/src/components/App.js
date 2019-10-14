@@ -11,7 +11,7 @@ class App extends Component {
       {
         name: "",
         nodes: [],
-        range:[]
+        range: []
       }
     ],
   };
@@ -49,7 +49,7 @@ class App extends Component {
             k loops through each factory's array of nodes
             m intantiates the object that will remodel this data for state and props
           */
-          for (let i = 0; i < item.length; i++) {
+          for (let i = 0; i < item.length; i++) { 
             for (let k = 0; k < Object.values(item[i]).length; k++) {
 
               let m = {}
@@ -68,48 +68,47 @@ class App extends Component {
       })
   };
 
+  /**
+   *  If the db is empty there will be no treeID in local storage,
+      so we must use a different API route then set the id in local
+      later use
+      
+  * If db is not empty, use id in localStorage to add a factory
+   */
   addFactory = (data) => {
     if (!localStorage.getItem('treeID')) {
-      /*
-        If the db is empty there will be no treeID in local storage,
-        so we must use a different API route then set the id in local
-        later use
-      */ 
       API.saveTree({ root: data })
         .then((res) => {
           localStorage.setItem("treeID", res.data._id)
         })
     } else {
-      /*
-        If db is not empty, use id in localStorage to add a factory
-      */
       API.addFactory(localStorage.getItem('treeID'), data)
         .then(res => {
         })
-      }
-      this.listen('create factory')
+    }
+    this.listen('create factory')
   };
 
-  removeFactory = (data) =>{
+  removeFactory = (data) => {
     API.pullFactory(localStorage.getItem("treeID"), data)
-			.then(() => {
-			})
+      .then(() => {
+      })
     this.listen('delete factory')
   };
 
   changeFactoryName = (data) => {
     API.changeName(localStorage.getItem("treeID"), data)
-    .then(() => {
-      this.listen('rename factory')
-    })
+      .then(() => {
+        this.listen('rename factory')
+      })
   };
 
-  changeFactoryRange = (data)=>{
+  changeFactoryRange = (data) => {
     API.changeRange(localStorage.getItem("treeID"), data)
-    .then(() => {
-      this.listen('range change')
-      this.forceUpdate()
-    })
+      .then(() => {
+        this.listen('range change')
+        this.forceUpdate()
+      })
   };
 
   listen = (str) => {
@@ -129,8 +128,8 @@ class App extends Component {
               matchArr={this.state.match}
               addFactory={this.addFactory}
               removeFactory={this.removeFactory}
-              changeFactoryName ={this.changeFactoryName}
-              changeFactoryRange= {this.changeFactoryRange}
+              changeFactoryName={this.changeFactoryName}
+              changeFactoryRange={this.changeFactoryRange}
             />
           </div>
         </div>

@@ -5,26 +5,17 @@ const findOne = async (req, res) => {
 	res.json(result)
 }
 
-const create = async (req, res) => {
-	const result = await db.Tree.create(req.body)
-	console.log(result)
-	res.json()
-}
+const create = async (req, res) => await db.Tree.create(req.body)
 
-const addFactory = (req, res) => {
-	db.Tree
-		.findOneAndUpdate({
-			_id: req.params.id
-		}, {
-			$addToSet: {
-				'root': req.body
-			},
+const addFactory = async (req, res) => {
+	const result = await db.Tree.findOneAndUpdate(
+		{_id: req.params.id}, 
+		{$addToSet:
+			{'root': req.body},
 			new: true
-		})
-		.then(dbModel => {
-			res.json(dbModel)
-		})
-		.catch(err => res.status(422).json(err));
+		}
+		)
+			res.json(result)
 }
 
 const pullFactory = (req, res) => {

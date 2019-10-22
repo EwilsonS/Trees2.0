@@ -1,36 +1,29 @@
+const chai = require("chai");
+// chai.use(require('chai-uuid'));
+const should = chai.should();
+
 const { expect } = require('chai')
 const sinon = require('sinon')
 const fakeData = require('./fakeData')
 const treesController = require('../controllers/treesController')
 
-describe.only('treesController', () => {
-  afterEach(() => {
-    sinon.restore()
+describe('treesController', () => {
+  beforeEach(() => {
+
   })
 
+  // happy path
   describe('findOne', () => {
     sinon.stub(treesController, 'findOne').returns(fakeData)
 
     it('should retrieve the only existing tree from db', async () => {
       const result = await treesController.findOne("root")
-      expect(result).to.equal(fakeData)
+      // expect(result).to.equal(fakeData)
+      result.should.equal(fakeData)
     })
-  })
 
-  describe('create', () => {
-    sinon.stub(treesController, 'create').returns(fakeData)
+    // sad path
+    it('should return an error message')
 
-    it('should create a new tree named root', async () => {
-
-      const result = await treesController.create({
-        root: [
-          {
-            "wilsonFake": [[1997, 2004, 2017, 1994, 2019, 1988], [1987, 2019]]
-          }
-        ]
-      })
-
-      expect(result).to.equal(fakeData)
-    })
   })
 }) 

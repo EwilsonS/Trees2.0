@@ -17,28 +17,31 @@ class App extends Component {
   };
 
   componentDidMount() {
-    // const socket = io();
+    // const socket = io('/')
+    // socket.on('news', function (data) {
+    //   console.log(data);
+    //   socket.emit('my other event', { my: 'data' })
+    // })
     API.getTree("root")
       .then(res => {
         if (!res.data) {
           localStorage.removeItem("treeID")
-          localStorage.removeItem("dbOccupied");
-          localStorage.setItem("dbOccupied", false);
+          localStorage.removeItem("dbOccupied")
+          localStorage.setItem("dbOccupied", false)
         } else {
           localStorage.removeItem("dbOccupied")
           localStorage.setItem("dbOccupied", true)
           localStorage.setItem("treeID", res.data._id)
 
-          /*
-            Model Object Guide
-           =======================================
-            console.log(res.data.root) // [{...}]
-            console.log(item[0]) // {factory: [...]}
-            console.log(item[0].factory) // [{...}]
-            console.log(item[0].factory[0]) // wilson[...]
-            console.log(Object.keys(item[0].factory[0])[0]) // wilson
-            console.log(Object.values(item[0].factory[0])) // [12, 12, 23, 855]
-           */
+          /* Model Object Guide*/
+          // =======================================
+          //   console.log(res.data.root) // [{...}]
+          //   console.log(item[0]) // {factory: [...]}
+          //   console.log(item[0].factory) // [{...}]
+          //   console.log(item[0].factory[0]) // wilson[...]
+          //   console.log(Object.keys(item[0].factory[0])[0]) // wilson
+          //   console.log(Object.values(item[0].factory[0])) // [12, 12, 23, 855]
+
           console.log(res.data.root)
           let item = res.data.root
           let makeMatch = [];
@@ -49,7 +52,7 @@ class App extends Component {
             k loops through each factory's array of nodes
             m intantiates the object that will remodel this data for state and props
           */
-          for (let i = 0; i < item.length; i++) { 
+          for (let i = 0; i < item.length; i++) {
             for (let k = 0; k < Object.values(item[i]).length; k++) {
 
               let m = {}

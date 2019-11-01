@@ -1,16 +1,14 @@
 const express = require("express");
+const app = express();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const session = require("express-session")
 const morgan = require('morgan');
 const routes = require("./routes");
-const app = express();
 const cookieParser = require("cookie-parser")
 const PORT = process.env.PORT ? process.env.PORT : 3001;
-
-// Socket.io
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
 
 mongoose.Promise = global.Promise;
 
@@ -47,30 +45,22 @@ if (process.env.NODE_ENV === "production") {
 // // Add routes, both API and view
 app.use(routes);
 
-
-
-// app.listen(PORT, function () {
-//   console.log(`🌎 ==> Server now on port ${PORT}!`);
-// });
-
-// =======================================
-// ========== Implement Socket============
 app.get('/', function (req, res) {
   res.send(routes);
 });
 
-io.on('connection', function (socket) {
-  socket.on('factory', function (name) {
+io.on('connection', socket => {
+  socket.on('factory', name => {
     io.emit('factory', name);
     console.log('a user connected');
     console.log('factory: ' + name);
   });
-  socket.on('disconnect', function () {
+  socket.on('disconnect', () => {
     console.log('user disconnected');
 
   });
 });
 
-http.listen(PORT, function () {
+http.listen(PORT, () => {
   console.log(`🌎 listening on *:${PORT}`);
 });

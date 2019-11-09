@@ -51,7 +51,7 @@ app.get('/', function (req, res) {
 
 io.on('connection', socket => {
   socket.on('factory', name => {
-    io.emit('factory', name);
+    io.emit('factory', { name: name });
     console.log('a user connected');
     console.log('factory: ' + name);
   });

@@ -23,7 +23,8 @@
     "concurrently": "^4.1.2",
     "mocha": "^6.2.1",
     "nodemon": "^1.19.3",
-    "sinon": "^7.5.0"
+    "sinon": "^7.5.0",
+    "supertest": "^4.0.2"
   },
   "dependencies": {
     "axios": "^0.18.1",

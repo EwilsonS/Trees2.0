@@ -13,7 +13,7 @@ const PORT = process.env.PORT ? process.env.PORT : 3001;
 mongoose.Promise = global.Promise;
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/saytrees");
+mongoose.connect(process.env.MONGODB_URI || "mongodb+srv://ew_admin:2UuFF5nQeuL3ryjN@cluster0.re5ggwo.mongodb.net/saytrees?retryWrites=true&w=majority");
 
 // Console visual aid for dev environment
 app.use(morgan('dev'))
